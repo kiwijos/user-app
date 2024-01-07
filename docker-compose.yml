@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  user-web-service:
-    container_name: user-web-container
-    image: user-web-image
+  app-service:
+    container_name: app-container
+    image: app-image
     build:
       context: .
       dockerfile: Dockerfile
