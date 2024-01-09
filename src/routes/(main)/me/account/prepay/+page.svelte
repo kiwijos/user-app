@@ -4,6 +4,7 @@
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings, ToastStore } from '@skeletonlabs/skeleton';
 	import Fa from 'svelte-fa';
+	import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 	import { cardOptions } from '$lib/utils/cardOptions';
 	import type { PageData } from './$types';
 
@@ -31,6 +32,8 @@
 	$: if (form?.success) {
 		toastStore.trigger(toastSettings);
 	}
+
+	let hasSetupPaymentMethod: boolean = typeof data?.card?.card_type === 'number';
 </script>
 
 <form action="?/prepay" method="POST" use:enhance class="flex flex-col space-y-4 max-w-xl">
@@ -44,19 +47,13 @@
 				title="Sparat konto"
 			/>
 			<div class="input-group-shim">
-				{#if typeof data?.card?.card_type === 'number'}
+				{#if hasSetupPaymentMethod}
 					<Fa icon={cardOptions[data.card.card_type - 1].icon} scale={1.5} />
 				{:else}
-					<a href="/me/account/payment">Ändra</a>
+					<a href="/me/account/payment"><Fa scale={1.5} icon={faPlusCircle} /></a>
 				{/if}
 			</div>
 		</div>
-		<p class="text-sm text-surface-700 dark:text-surface-300">
-			Överför från ditt bankkonto till ditt konto hos oss. <a
-				href="/me/account/payment"
-				class="anchor">Ändra bankkonto</a
-			>
-		</p>
 	</label>
 
 	<label class="label">
@@ -67,10 +64,14 @@
 			type="number"
 			placeholder="Ange belopp"
 			name="amount"
+			disabled={!hasSetupPaymentMethod}
 		/>
 		<p class="text-error-400 text-xs">&nbsp; {amountError || ''}</p>
 	</label>
-	<button class="max-w-fit btn bg-primary-500 text-white" title="Överför" type="submit"
-		>Överför</button
+	<button
+		class="max-w-fit self-end btn variant-filled-primary text-surface-50 dark:text-primary-100"
+		disabled={!hasSetupPaymentMethod}
+		title="Överför"
+		type="submit">Överför</button
 	>
 </form>
