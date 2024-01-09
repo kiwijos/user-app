@@ -1,37 +1,30 @@
 <script lang="ts">
-	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import Fa from 'svelte-fa';
+	import { faBiking, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-	export let navClasses: string = '';
-	export let itemClasses: string = '';
-
-	const paths = [{ name: 'Hem', path: '/' }];
-
-	if ($page.data.user !== null) {
-		paths.push(
-			{ name: 'Profil', path: '/me/account' },
-			{ name: 'Betalningar', path: '/me/account/transactions' },
-			{ name: 'Resehistorik', path: '/me/account/trips' }
-		);
-	}
-
-	const drawerStore = getDrawerStore();
-
-	function drawerClose(): void {
-		drawerStore.close();
-	}
+	const paths = [
+		{ name: 'Hyr', path: '/me', icon: faBiking },
+		{ name: 'Sök', path: '/me/search', icon: faSearch },
+		{ name: 'Profil', path: '/me/account', icon: faUser }
+	];
 </script>
 
-<nav class={navClasses} data-sveltekit-preload-data="false">
-	{#each paths as { name, path }}
-		{@const active = $page.url.pathname === path ? 'page' : null}
-		{@const activeClass =
-			$page.url.pathname === path ? '!variant-soft-primary ' : 'hover:!variant-soft-primary'}
-		<a
-			class="btn btn-sm {activeClass} {itemClasses}"
-			aria-current={active}
-			href={path}
-			on:click={drawerClose}>{name}</a
+<nav
+	class="flex w-full bg-surface-50 dark:bg-surface-900 dark:border-t dark:border-surface-800 text-surface-700 dark:text-surface-300"
+>
+	{#each paths as { name, path, icon }}
+		<button
+			class="btn grow text-lg first:justify-end last:justify-start {$page.url.pathname === path
+				? '!text-primary-500'
+				: ''}"
+			aria-current={$page.url.pathname === path ? 'page' : null}
+			on:click={() => goto(path)}
+			><span
+				class="rounded-full w-10 h-10 flex items-center justify-center bg-surface-100 dark:bg-surface-800"
+				><Fa {icon} fw /></span
+			><span class="sr-only">{name}</span></button
 		>
 	{/each}
 </nav>
