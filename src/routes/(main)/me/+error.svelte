@@ -2,7 +2,9 @@
 	import { page } from '$app/stores';
 </script>
 
-<h2 class="h2 font-thin text-surface-700 dark:text-surface-300">
-	{$page.status}
-	{$page.error?.message}
-</h2>
+<div class="h-full flex flex-col justify-center items-center">
+	<h1 class="text-center text-4xl font-extrabold">Nåt gick fel</h1>
+	<h2 class="text-center h3 font-medium text-surface-500">
+		{$page.error?.message}
+	</h2>
+</div>
