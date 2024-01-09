@@ -13,8 +13,8 @@
 <svelte:head>
 	{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}
 </svelte:head>
-<Toast />
+<Toast position="t" />
 <slot />
-<div class="fixed bottom-0 right-0 z-50 p-4">
+<div class="fixed bottom-10 right-0 z-50 p-4">
 	<LightSwitch />
 </div>
