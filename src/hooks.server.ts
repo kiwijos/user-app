@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import { error } from '@sveltejs/kit';
+import { redirect, error } from '@sveltejs/kit';
 import { jwtDecode } from 'jwt-decode';
 import type { CustomJwtPayload } from './lib/types/CustomJwtPayload';
 import type { HandleFetch } from '@sveltejs/kit';
@@ -75,6 +75,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 		id: decoded.id,
 		email: decoded.email
 	};
+
+	// Redirect to the me page if the user is already logged in
+	if (event.url.pathname === '/') {
+		throw redirect(302, '/me');
+	}
 
 	return await resolve(event);
 };
