@@ -13,8 +13,9 @@
 
 	const toastSettings: ToastSettings = {
 		message: 'Din kortuppgifter har uppdaterats',
-		timeout: 10000,
-		background: 'variant-ghost-primary'
+		timeout: 3000,
+		hideDismiss: true,
+		background: 'variant-soft-success'
 	};
 
 	export let form: ActionData;

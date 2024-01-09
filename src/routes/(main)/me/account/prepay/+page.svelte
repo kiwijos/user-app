@@ -12,9 +12,10 @@
 	const toastStore: ToastStore = getToastStore();
 
 	const toastSettings: ToastSettings = {
-		message: 'Överföringen lyckades!',
-		timeout: 10000,
-		background: 'variant-ghost-primary'
+		message: 'Överföring lyckades!',
+		timeout: 2000,
+		hideDismiss: true,
+		background: 'variant-soft-success'
 	};
 
 	export let form: ActionData;
