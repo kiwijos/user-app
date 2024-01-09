@@ -74,12 +74,49 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 		);
 	}
 
-	const githubResult = await githubResponse.json();
+	let githubResult;
 
-	const scopes = githubResult.scope.split(',');
+	try {
+		githubResult = await githubResponse.json();
+	} catch (e) {
+		let message;
+		if (e instanceof Error) message = e.message;
+		else message = String(e);
+
+		console.error(
+			'Request succeeded when trying to exchange GitHub code for access token, but the response was not valid JSON',
+			message
+		);
+
+		throw error(
+			500,
+			'Inloggning misslyckades. Möjligen på grund av ett serverfel. Försök igen senare.'
+		);
+	}
+
+	let scopes: string;
+
+	// Check that the app has access to the user's email address
+	try {
+		scopes = githubResult.scope.split(',');
+	} catch (e) {
+		let message;
+		if (e instanceof Error) message = e.message;
+		else message = String(e);
+
+		console.error(
+			'Request succeeded, but the response did not contain a scope. The temporary code might have expired or been used before.',
+			message
+		);
+
+		throw error(
+			500,
+			'Inloggning misslyckades. Möjligen på grund av ett serverfel. Försök igen senare.'
+		);
+	}
 
 	if (!scopes.includes('user:email')) {
-		console.error('The app does not have access to the "user:email" scope', githubResult);
+		console.warn('The user denied access to the "user:email" scope', githubResult);
 		throw error(
 			403,
 			'Inloggning misslyckades. För att logga in måste du ge tillgång till din e-postadress.'
