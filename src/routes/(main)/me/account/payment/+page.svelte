@@ -39,17 +39,12 @@
 	}
 </script>
 
-<form
-	action="?/updatePaymentMethod"
-	method="POST"
-	use:enhance
-	class="flex flex-col space-y-4 max-w-xl"
->
+<form action="?/updatePaymentMethod" method="POST" use:enhance class="flex flex-col gap-2">
 	<div class="space-y-2">
 		<p class="text-sm font-bold text-surface-700 dark:text-surface-300">Korttyp</p>
 		{#each cardOptions as card, index}
 			<label
-				class="p-4 cursor-pointer rounded-container-token flex items-center space-x-4 [&:has(input:checked)]:variant-soft-primary"
+				class="p-4 border dark:border-surface-800 cursor-pointer rounded-container-token flex items-center space-x-4 [&:has(input:checked)]:variant-soft-primary"
 			>
 				<span><Fa icon={card.icon} size="lg" /></span>
 				<p class="grow">{card.name}</p>
