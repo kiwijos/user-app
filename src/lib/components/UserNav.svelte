@@ -2,53 +2,46 @@
 	import { enhance } from '$app/forms';
 	import Fa from 'svelte-fa';
 	import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-	import { accountLinksWithIcons } from '$lib/utils/links';
+	import {
+		faCog,
+		faCreditCard,
+		faRoute,
+		faWallet,
+		faMoneyBillTransfer
+	} from '@fortawesome/free-solid-svg-icons';
 
-	export let asideClasses: string = '';
-	export let itemWidth: string = 'w-full';
-	export let itemPadding: string = 'px-4 py-3';
-	export let itemLayout: string = 'flex items-center';
-	export let itemClasses: string = '';
-	export let itemText: string = 'text-sm text-gray-700 dark:text-gray-200';
-	export let itemHover: string =
-		'hover:bg-gray-200 dark:hover:bg-surface-800 dark:hover:text-white';
-	export let preloadData: string = 'false';
-	export let textStyle: string = 'font-medium';
-	export let divide: string = 'divide-y divide-surface-300 dark:divide-surface-700';
-	export let container: string = '';
-	export let lastItem: string = '';
-	export let firstItem: string = '';
+	export const accountLinksWithIcons = [
+		{ name: 'Inställningar', path: '/me/account/settings', icon: faCog },
+		{ name: 'Kortuppgifter', path: '/me/account/payment', icon: faCreditCard },
+		{ name: 'Prepay', path: '/me/account/prepay', icon: faMoneyBillTransfer },
+		{ name: 'Betalningar', path: '/me/account/transactions', icon: faWallet },
+		{ name: 'Resehistorik', path: '/me/account/trips', icon: faRoute }
+	];
 </script>
 
-<aside
-	aria-label="Sidebar"
-	class="overflow-auto h-full {asideClasses}"
-	data-sveltekit-preload-data={preloadData}
->
-	<div class="{divide} {container}">
-		<ul class={textStyle}>
-			{#each accountLinksWithIcons as link, index}
+<div aria-label="navigation" class="overflow-auto h-full">
+	<div class="rounded-container-token border dark:border-surface-800">
+		<ul class="font-medium">
+			{#each accountLinksWithIcons as link}
 				<li>
 					<a
 						href={link.path}
-						class="{index === 0
-							? firstItem
-							: ''} {itemClasses} {itemLayout} {itemPadding} {itemWidth} {itemText} {itemHover}"
+						class="flex w-full px-4 items-center text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-surface-800 dark:hover:text-white"
 					>
 						<Fa icon={link.icon} />
-						<span class="ms-3">{link.name}</span>
+						<span class="ms-4 py-4 border-b w-full dark:border-surface-800">{link.name}</span>
 					</a>
 				</li>
 			{/each}
 		</ul>
-		<form action="/logout" method="POST" class={textStyle} use:enhance>
+		<form action="/logout" method="POST" class="font-medium" use:enhance>
 			<button
 				type="submit"
-				class="{lastItem} {itemClasses} {itemLayout} {itemPadding} {itemWidth} {itemText} {itemHover}"
+				class="flex w-full px-4 py-4 items-center text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-surface-800 dark:hover:text-white"
 			>
 				<Fa icon={faSignOutAlt} />
-				<span class="ms-3">Logga ut</span>
+				<span class="ms-4">Logga ut</span>
 			</button>
 		</form>
 	</div>
-</aside>
+</div>
