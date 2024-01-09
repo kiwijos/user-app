@@ -63,7 +63,7 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 		);
 	}
 
-	if (!githubResponse.ok) {
+	if (!githubResponse?.ok) {
 		console.error(
 			'Request failed when trying to exchange GitHub code for access token',
 			githubResponse
