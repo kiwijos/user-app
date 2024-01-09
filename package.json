@@ -44,7 +44,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@floating-ui/dom": "^1.5.3",
 		"@fortawesome/free-brands-svg-icons": "^6.5.1",
 		"@fortawesome/free-solid-svg-icons": "^6.5.1",
 		"dotenv": "^16.3.1",
