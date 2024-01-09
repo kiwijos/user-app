@@ -161,5 +161,5 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 
 	// We only use this endpoint to autheticate the user, so we don't need to display anything,
 	// redirect instead (assuming all went well at this point)
-	throw redirect(302, '/');
+	throw redirect(302, '/me');
 };
