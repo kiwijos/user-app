@@ -117,15 +117,9 @@
 		<p>&nbsp;</p>
 	</label>
 	<button
-		class="max-w-fit btn bg-primary-500 text-white"
-		aria-describedby="helper-text-explanation"
+		class="max-w-fit self-end btn variant-filled-primary text-surface-50 dark:text-primary-100"
 		type="submit">Spara</button
 	>
-	<p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-		Vi delar inte din data. Läs vår <a href="/blog/privacy-policy" class="font-medium anchor"
-			>Integritetspolicy</a
-		>.
-	</p>
 </form>
 
 <style>
