@@ -19,13 +19,18 @@ body {
 	scrollbar-width: none; /* Firefox */
 }
 
+/* hide scroll bar on all elements */
+* {
+	@apply scrollbar-hide;
+}
+
 .btn,
 .input {
 	@apply rounded-md;
 }
 
 body {
-	@apply bg-gray-200 dark:bg-surface-900;
+	@apply bg-surface-100 dark:bg-surface-900;
 }
 
 @media (prefers-reduced-motion) {
