@@ -10,6 +10,6 @@ export const actions: Actions = {
 		cookies.delete('session', { path: '/' });
 		locals.user = null;
 
-		throw redirect(302, '/login');
+		throw redirect(302, '/');
 	}
 };
