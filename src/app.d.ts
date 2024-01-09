@@ -14,6 +14,7 @@ declare global {
 			};
 		}
 		interface PageData {
+			user?: Locals['user'];
 			card?: Card;
 			trips?: Trip[];
 			transactions?: Transaction[];
