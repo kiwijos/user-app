@@ -49,32 +49,17 @@
 			</a>
 		</div>
 	{:else}
-		<div class="p-4 rounded-lg variant-soft-primary w-full sm:w-52 space-y-2" role="alert">
-			<div class="flex items-center mb-3">
-				<span class="badge rounded bg-primary-500 text-white">Kom igång!</span>
-				<button
-					type="button"
-					class="ms-auto -mx-1.5 -my-1.5 btn-icon w-8 h-8 variant-soft-primary flex"
-					aria-label="Fakeknapp för att stänga varning"
-				>
-					<Fa icon={faXmark} />
-					<span class="sr-only">Den här knappen funkar inte</span>
-				</button>
-			</div>
+		<a
+			href="/me/account/payment"
+			class="block card card-hover p-4 variant-soft-primary w-full sm:w-52 space-y-2"
+		>
+			<span class="badge rounded variant-filled-primary text-surface-50 dark:text-primary-100"
+				>Kom igång!</span
+			>
 			<p class="text-sm text-blue-800 dark:text-blue-400">
 				Ställ in kortuppgifter för att kunna hyra elsparkcyklar i appen.
 			</p>
-			<a
-				class="inline-block text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
-				href="/me/account/payment">Ställ in kortuppgifter</a
-			>
-		</div>
+		</a>
 	{/if}
-	<UserNav
-		asideClasses="block sm:hidden"
-		itemHover="hover:bg-surface-100 hover:dark:bg-surface-700"
-		container="card bg-gray-100 dark:bg-surface-800 rounded-container-token"
-		lastItem="rounded-b-md"
-		firstItem="rounded-t-md"
-	/>
+	<UserNav />
 </div>
