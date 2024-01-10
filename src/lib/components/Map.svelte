@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Map } from 'maplibre-gl';
 	import { PUBLIC_MAPTILER_API_KEY } from '$env/static/public';
+	import { GeolocateControl } from 'maplibre-gl';
 	import { mapStore } from '$lib/stores/map';
 
 	let mapContainer: HTMLDivElement;
@@ -21,6 +22,14 @@
 			zoom: initialState.zoom,
 			attributionControl: true
 		});
+		map.addControl(
+			new GeolocateControl({
+				positionOptions: {
+					enableHighAccuracy: true
+				},
+				trackUserLocation: true
+			})
+		);
 
 		mapStore.set(map);
 	}
