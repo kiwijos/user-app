@@ -2,10 +2,11 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Fa from 'svelte-fa';
-	import { faBiking, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+	import { faBiking, faUser, faSearch, faTicket } from '@fortawesome/free-solid-svg-icons';
 
 	const paths = [
 		{ name: 'Hyr', path: '/me', icon: faBiking },
+		{ name: 'Aktiva resor', path: '/me/active', icon: faTicket },
 		{ name: 'Sök', path: '/me/search', icon: faSearch },
 		{ name: 'Profil', path: '/me/account', icon: faUser }
 	];
@@ -16,10 +17,9 @@
 >
 	{#each paths as { name, path, icon }}
 		<button
-			class="btn grow text-lg first:justify-end last:justify-start {$page.url.pathname === path
-				? '!text-primary-500'
-				: ''}"
+			class="btn grow text-lg {$page.url.pathname === path ? '!text-primary-500' : ''}"
 			aria-current={$page.url.pathname === path ? 'page' : null}
+			title="Gå till '{name}'"
 			on:click={() => goto(path)}
 			><span
 				class="rounded-full w-10 h-10 flex items-center justify-center bg-surface-100 dark:bg-surface-800"
