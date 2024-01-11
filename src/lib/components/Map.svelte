@@ -13,7 +13,7 @@
 	export let height = 'h-full';
 
 	$: if (mapContainer) {
-		const initialState = { lat: 62.0, lng: 15.0, zoom: 4 };
+		const initialState = { lat: 59.0, lng: 15.0, zoom: 5 };
 
 		const map: Map = new Map({
 			container: mapContainer,
