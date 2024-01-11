@@ -36,9 +36,8 @@ export const formatMilliseconds = (milliseconds: number): string => {
 export const formatDateReadable = (date: string): string => {
 	const d = new Date(date);
 	return d.toLocaleDateString('sv-SE', {
-		weekday: 'long',
 		year: 'numeric',
-		month: 'long',
+		month: 'short',
 		day: 'numeric',
 		hour: 'numeric',
 		minute: 'numeric',
