@@ -72,7 +72,7 @@
 		if (focusInput) searchInput.focus();
 	});
 
-	function handleInput(event: Event) {
+	function handleInput() {
 		dispatch('search', searchQuery);
 	}
 </script>
