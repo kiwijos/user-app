@@ -36,7 +36,7 @@
 </script>
 
 <div class="relative {width} {height}">
-	<a href="https://www.maptiler.com" class="watermark"
+	<a href="https://www.maptiler.com" class="watermark" target="_blank" rel="noopener"
 		><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo" /></a
 	>
 	<div class="map" bind:this={mapContainer} />
