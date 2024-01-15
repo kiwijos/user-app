@@ -62,8 +62,8 @@
 		placeholder="Sök i appen..."
 	/>
 </div>
-<SearchResults
-	results={searchResults}
-	{highlightedSubstring}
-	noMatchesText="Sök efter sidnamn eller nyckelord."
-/>
+<SearchResults results={searchResults} {highlightedSubstring}>
+	<div slot="noMatches" class="py-16">
+		<p class="text-center text-surface-500">Sök efter sidnamn eller nyckelord.</p>
+	</div>
+</SearchResults>
