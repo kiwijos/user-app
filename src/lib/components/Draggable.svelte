@@ -82,14 +82,20 @@
 
 	/**
 	 * Set this to snap the draggable to a specific position
-	 * @type {{ left: number; top: number }
+	 * @type string
 	 */
-	export let snapTo: { left: number; top: number };
+	export let snapTo: string;
 
 	// Update the left and top values when snapTo changes
-	$: if (snapTo) {
-		left = snapTo.left;
-		top = snapTo.top;
+	$: if (snapTo === 'bottom') {
+		left = 0;
+		top = realSnapBottom;
+	} else if (snapTo === 'top') {
+		left = 0;
+		top = snapTop;
+	} else if (snapTo === 'middle') {
+		left = 0;
+		top = snapMiddle;
 	}
 
 	/**
