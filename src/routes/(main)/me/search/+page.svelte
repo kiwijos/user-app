@@ -48,7 +48,7 @@
 		searchResults = searchableLinks.filter(
 			(item) =>
 				item.name.toLowerCase().includes(query.toLowerCase()) ||
-				item.alias.join().includes(query.toLocaleLowerCase())
+				item.alias.join().includes(query.toLowerCase())
 		);
 		highlightedSubstring = query;
 	}
