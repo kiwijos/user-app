@@ -148,17 +148,11 @@
 
 		// snap to snapBottom, middle or snapTop in the y-axis direction you're moving
 		if (lastYDirection > 0) {
-			if (top > snapMiddle) {
-				snapTo = { left: 0, top: realSnapBottom };
-			} else {
-				snapTo = { left: 0, top: snapMiddle };
-			}
+			if (top > snapMiddle) top = realSnapBottom;
+			else top = snapMiddle;
 		} else {
-			if (top < snapMiddle) {
-				snapTo = { left: 0, top: snapTop };
-			} else {
-				snapTo = { left: 0, top: snapMiddle };
-			}
+			if (top < snapMiddle) top = snapTop;
+			else top = snapMiddle;
 		}
 	}
 </script>
