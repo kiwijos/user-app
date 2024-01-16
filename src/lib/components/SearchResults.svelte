@@ -26,9 +26,12 @@
 			<button
 				class="w-full flex flex-col px-4 py-2 border-b dark:border-surface-800 last:border-none text-surface-700 dark:text-surface-300 hover:bg-surface-200 hover:dark:bg-surface-800 hover:dark:text-white"
 				on:click={() => result.callback(result.value)}
-				><span class="text-xl">{@html highlightSubstring(result.name, highlightedSubstring)}</span>
-				<span class="text-base text-surface-500 dark:text-surface-500"
-					>{@html highlightSubstring(result.alias.join(' '), highlightedSubstring)}</span
+			>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags  -->
+				<span class="text-xl">{@html highlightSubstring(result.name, highlightedSubstring)}</span>
+				<span class="text-base text-surface-500 dark:text-surface-500">
+					<!-- eslint-disable-next-line  svelte/no-at-html-tags -->
+					{@html highlightSubstring(result.alias.join(' '), highlightedSubstring)}</span
 				></button
 			>
 		{/each}
