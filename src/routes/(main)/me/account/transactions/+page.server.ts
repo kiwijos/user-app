@@ -20,23 +20,5 @@ export const load: PageServerLoad = async ({ fetch }) => {
 		throw error(404, 'Kunde inte hitta betalningarna.');
 	}
 
-	return {
-		transactions: [
-			{
-				id: 1,
-				user_id: 101,
-				amount: 5.0,
-				date: '2024-01-05T10:00:00',
-				ref: ''
-			},
-
-			{
-				id: 2,
-				user_id: 102,
-				amount: 4.5,
-				date: '2024-01-05T14:15:00',
-				ref: ''
-			}
-		]
-	};
+	return { transactions: result };
 };
