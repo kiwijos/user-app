@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import { page } from '$app/stores';
+	import { AppShell } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
-	import Breadcrumb from '$lib/components/Breadcrumb.svelte';
+	import ParentCrumb from '$lib/components/ParentCrumb.svelte';
 </script>
 
-<AppShell slotFooter=" z-[999]">
+<AppShell slotFooter="z-[999]">
 	<svelte:fragment slot="header">
-		<Breadcrumb />
+		<ParentCrumb />
 	</svelte:fragment>
 	<svelte:fragment slot="footer">
 		<Navigation />
