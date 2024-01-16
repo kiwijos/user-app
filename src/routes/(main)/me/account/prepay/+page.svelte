@@ -16,7 +16,7 @@
 		message: 'Överföring lyckades!',
 		timeout: 2000,
 		hideDismiss: true,
-		background: 'variant-soft-success'
+		background: 'variant-filled-primary'
 	};
 
 	export let form: ActionData;

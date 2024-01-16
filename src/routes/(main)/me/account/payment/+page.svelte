@@ -16,7 +16,7 @@
 		message: 'Din kortuppgifter har uppdaterats',
 		timeout: 3000,
 		hideDismiss: true,
-		background: 'variant-soft-success'
+		background: 'variant-filled-primary'
 	};
 
 	export let form: ActionData;
