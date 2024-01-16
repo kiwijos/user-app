@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Avatar } from '@skeletonlabs/skeleton';
+	import { Avatar, LightSwitch } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import Fa from 'svelte-fa';
 	import UserNav from '$lib/components/UserNav.svelte';
@@ -63,4 +63,10 @@
 		</a>
 	{/if}
 	<UserNav />
+	<div
+		class="p-4 text-sm flex justify-between items-center rounded-container-token border dark:border-surface-800"
+	>
+		<p class="text-sm font-medium text-gray-700 dark:text-gray-200">Välj färgtema</p>
+		<LightSwitch />
+	</div>
 </div>
