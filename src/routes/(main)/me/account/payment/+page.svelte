@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { applyAction, enhance } from '$app/forms';
 	import type { ActionData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings, ToastStore } from '@skeletonlabs/skeleton';
 	import Fa from 'svelte-fa';
 	import { cardOptions } from '$lib/utils/cardOptions';
 	import type { PageData } from './$types';
+	import { invalidate } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -37,9 +38,24 @@
 	$: if (form?.success) {
 		toastStore.trigger(toastSettings);
 	}
+
+	const handleSubmit = () => {
+		// @ts-expect-error - We wholeheartedly accept this untyped variable
+		return async ({ result }) => {
+			if (!result?.data.success) return;
+
+			invalidate('server:fetch');
+			await applyAction(result); // Apply the action, which will update the form state
+		};
+	};
 </script>
 
-<form action="?/updatePaymentMethod" method="POST" use:enhance class="flex flex-col gap-2">
+<form
+	action="?/updatePaymentMethod"
+	method="POST"
+	use:enhance={handleSubmit}
+	class="flex flex-col gap-2 py-8 px-4"
+>
 	<div class="space-y-2">
 		<p class="text-sm font-bold text-surface-700 dark:text-surface-300">Korttyp</p>
 		{#each cardOptions as card, index}
