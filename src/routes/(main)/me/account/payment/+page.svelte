@@ -48,6 +48,29 @@
 			await applyAction(result); // Apply the action, which will update the form state
 		};
 	};
+
+	let cardTypeChanged: boolean = false;
+	let cardNumberChanged: boolean = false;
+
+	// set to true if card type or number has changed
+	let canSubmit: boolean = false;
+	$: if (cardTypeChanged || cardNumberChanged) {
+		canSubmit = true;
+	} else {
+		canSubmit = false;
+	}
+
+	const onCardTypeChange = (e: Event) => {
+		const value = (e.target as HTMLInputElement).value;
+		if (value != data?.card?.card_type) cardTypeChanged = true;
+		else cardTypeChanged = false;
+	};
+
+	const onCardNumberChange = (e: Event) => {
+		const value = (e.target as HTMLInputElement).value;
+		if (value != data?.card?.card_number) cardNumberChanged = true;
+		else cardNumberChanged = false;
+	};
 </script>
 
 <form
@@ -69,6 +92,7 @@
 					type="radio"
 					checked={index + 1 === data?.card?.card_type}
 					name="cardType"
+					on:change={onCardTypeChange}
 					value={card.value}
 				/>
 			</label>
@@ -85,6 +109,7 @@
 				class="input !rounded-b-none rounded-t-md col-span-2"
 				type="number"
 				name="cardNumber"
+				on:change={onCardNumberChange}
 				placeholder={data?.card?.card_nr ? data.card.card_nr : 'Kortnummer'}
 			/>
 			<input
@@ -129,6 +154,7 @@
 	</label>
 	<button
 		class="max-w-fit self-end btn variant-filled-primary text-surface-50 dark:text-primary-100"
+		disabled={!canSubmit}
 		type="submit">Spara</button
 	>
 </form>

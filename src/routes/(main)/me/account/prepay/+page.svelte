@@ -49,6 +49,14 @@
 			await applyAction(result); // Apply the action, which will update the form state
 		};
 	};
+
+	let canSubmit: boolean = false;
+
+	const onValueChange = (e: Event) => {
+		const value = Number((e.target as HTMLInputElement).value);
+		if (value > 0) canSubmit = true;
+		else canSubmit = false;
+	};
 </script>
 
 <form
@@ -79,13 +87,14 @@
 			type="number"
 			placeholder="Ange belopp"
 			name="amount"
+			on:change={onValueChange}
 			disabled={!hasSetupPaymentMethod}
 		/>
 		<p class="text-error-400 text-xs">&nbsp; {amountError || ''}</p>
 	</label>
 	<button
 		class="max-w-fit self-end btn variant-filled-primary text-surface-50 dark:text-primary-100"
-		disabled={!hasSetupPaymentMethod}
+		disabled={!hasSetupPaymentMethod || !canSubmit}
 		title="Överför"
 		type="submit">Överför</button
 	>
