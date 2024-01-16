@@ -66,7 +66,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.user = null;
 		event.cookies.delete('session', { path: '/' });
 
-		throw error(403, 'Sessionen har gått ut. Logga in igen.');
+		throw redirect(302, '/');
 	}
 
 	// Valid token, presumably with some valid user data in it
