@@ -46,7 +46,7 @@
 				>Kom igång!</span
 			>
 			<p class="text-sm text-blue-800 dark:text-blue-400">
-				Ställ in kortuppgifter för att kunna hyra elsparkcyklar i appen.
+				Ställ in kortuppgifter för att kunna hyra elsparkcyklar.
 			</p>
 		</a>
 	{/if}
