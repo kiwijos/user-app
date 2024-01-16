@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { applyAction, enhance } from '$app/forms';
 	import type { ActionData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings, ToastStore } from '@skeletonlabs/skeleton';
@@ -7,6 +7,7 @@
 	import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 	import { cardOptions } from '$lib/utils/cardOptions';
 	import type { PageData } from './$types';
+	import { invalidate } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -34,14 +35,28 @@
 	}
 
 	let hasSetupPaymentMethod: boolean = typeof data?.card?.card_type === 'number';
+
+	// @ts-expect-error - untyped variables are fine
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const handleSubmit = ({ formElement, formData, action, cancel, submitter }) => {
+		if (!hasSetupPaymentMethod) cancel();
+
+		// @ts-expect-error - We wholeheartedly accept this untyped variable
+		return async ({ result }) => {
+			if (!result?.data.success) return;
+
+			invalidate('server:fetch');
+			await applyAction(result); // Apply the action, which will update the form state
+		};
+	};
 </script>
 
-<form action="?/prepay" method="POST" use:enhance class="flex flex-col space-y-4 max-w-xl">
-	<label class="label">
-		<span class="text-sm font-bold text-surface-700 dark:text-surface-300">Bankkonto</span>
-		<div class="input-group input-group-divider grid-cols-[1fr_auto] rounded-container-token">
-			<input
-				type="text"
+<form
+	action="?/prepay"
+	method="POST"
+	use:enhance={handleSubmit}
+	class="flex flex-col space-y-4 gap-2 py-8 px-4"
+>
 				placeholder={data?.card?.card_nr ? data.card.card_nr : 'Konto saknas'}
 				disabled
 				title="Sparat konto"
