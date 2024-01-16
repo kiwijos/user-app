@@ -3,10 +3,8 @@
 	import type { ActionData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings, ToastStore } from '@skeletonlabs/skeleton';
-	import Fa from 'svelte-fa';
-	import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-	import { cardOptions } from '$lib/utils/cardOptions';
 	import type { PageData } from './$types';
+	import PaymentCardButton from '$lib/components/PaymentCardButton.svelte';
 	import { invalidate } from '$app/navigation';
 
 	export let data: PageData;
@@ -65,27 +63,14 @@
 	use:enhance={handleSubmit}
 	class="flex flex-col space-y-4 gap-2 py-8 px-4"
 >
-				placeholder={data?.card?.card_nr ? data.card.card_nr : 'Konto saknas'}
-				disabled
-				title="Sparat konto"
-			/>
-			<div class="input-group-shim">
-				{#if hasSetupPaymentMethod}
-					<Fa icon={cardOptions[data.card.card_type - 1].icon} scale={1.5} />
-				{:else}
-					<a href="/me/account/payment"><Fa scale={1.5} icon={faPlusCircle} /></a>
-				{/if}
-			</div>
-		</div>
-	</label>
-
+	<PaymentCardButton card={data?.card} />
 	<label class="label">
 		<span class="text-sm font-bold text-surface-700 dark:text-surface-300">Belopp</span>
 		<input
-			class="input"
+			class="input text-4xl dark:border-surface-800 bg-surface-100 dark:bg-surface-900 text-surface-700 dark:text-surface-300 py-4 px-4"
 			title="Input (belopp)"
 			type="number"
-			placeholder="Ange belopp"
+			placeholder="kr"
 			name="amount"
 			on:change={onValueChange}
 			disabled={!hasSetupPaymentMethod}
