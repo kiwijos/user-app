@@ -18,7 +18,7 @@ RUN npm ci --omit dev
 # The only other files needed are the production code inside the build output
 COPY --from=build app/build ./build
 
-EXPOSE 5173
+EXPOSE 5174
 
 # Start the app and use dotenv to load the environment variables from the .env file
 # (this is needed because .env files are not automatically loaded in production)

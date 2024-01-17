@@ -11,7 +11,7 @@ services:
       # Explicitly tell SvelteKit where the app is being served
       # to avoid the "Cross-site POST form submissions are forbidden" error
       # when using form actions with the node adapter
-      - ORIGIN=http://localhost:5173
+      - ORIGIN=http://localhost:5174
     restart: always
     ports:
-      - 5173:5173
+      - 5174:5174
