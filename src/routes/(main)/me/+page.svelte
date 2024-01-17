@@ -441,8 +441,9 @@
 	zIndex="z-[998]"
 	initialLeft={0}
 	initialTop={500}
+	initialBottom={400}
 	snapBottom={200}
-	snapMiddle={500}
+	snapMiddle={400}
 	snapTop={8}
 	{snapTo}
 >
