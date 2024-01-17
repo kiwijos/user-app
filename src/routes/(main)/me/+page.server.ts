@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 		.then((r) => r.json())
 		.catch(() => [])) as Bike[];
 
-	const availableBikes = bikes.filter((bike: Bike) => bike.status_id !== 2 && bike.status_id !== 5);
+	const availableBikes = bikes.filter((bike: Bike) => bike.status_id === 1 && bike.active === true);
 
 	const bikeFeatures = <BikeFeature[]>availableBikes.map((bike: Bike) => {
 		return {
