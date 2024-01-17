@@ -193,7 +193,7 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 	cookies.set('session', jwtToken, {
 		path: '/',
 		sameSite: 'strict',
-		maxAge: 60 * 60 * 24 * 30 // set cookie to expire after a month
+		maxAge: 60 * 60 * 24 // set cookie to expire after 24 hours
 	});
 
 	// We only use this endpoint to autheticate the user, so we don't need to display anything,
