@@ -5,7 +5,7 @@
 	 * The initial left position of the draggable
 	 * @type {number}
 	 */
-	export let initialLeft: number | undefined;
+	export let initialLeft: number = 0;
 
 	/**
 	 * The initial top position of the draggable
@@ -13,8 +13,10 @@
 	 */
 	export let initialTop: number | undefined;
 
+	export let initialBottom: number | undefined;
+
 	let left: number = initialLeft ?? 0;
-	let top: number = initialTop ?? 0;
+	let top: number = initialBottom ? window.innerHeight - initialBottom : initialTop ?? 0;
 
 	/**
 	 * The z-index of the draggable
@@ -75,9 +77,12 @@
 	 */
 	let realSnapBottom: number = 0;
 
+	let realSnapMiddle: number = 0;
+
 	// The window is not available before the component is mounted
 	onMount(() => {
 		realSnapBottom = window.innerHeight - snapBottom;
+		realSnapMiddle = window.innerHeight - snapMiddle;
 	});
 
 	/**
@@ -95,7 +100,7 @@
 		top = snapTop;
 	} else if (snapTo === 'middle') {
 		left = 0;
-		top = snapMiddle;
+		top = realSnapMiddle;
 	}
 
 	/**
@@ -154,11 +159,11 @@
 
 		// snap to snapBottom, middle or snapTop in the y-axis direction you're moving
 		if (lastYDirection > 0) {
-			if (top > snapMiddle) top = realSnapBottom;
-			else top = snapMiddle;
+			if (top > realSnapMiddle) top = realSnapBottom;
+			else top = realSnapMiddle;
 		} else {
-			if (top < snapMiddle) top = snapTop;
-			else top = snapMiddle;
+			if (top < realSnapMiddle) top = snapTop;
+			else top = realSnapMiddle;
 		}
 	}
 </script>
