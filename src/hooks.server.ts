@@ -31,10 +31,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		// No token, no access to the me page
 		if (event.url.pathname.startsWith('/me')) {
-			throw error(
-				403,
-				`För att få tillgång till sidan ${event.request.url} måste du vara inloggad.`
-			);
+			throw redirect(302, '/');
 		}
 
 		return await resolve(event); // <-- no token, no problem (resolve the request as normal)
@@ -58,7 +55,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.user = null;
 		event.cookies.delete('session', { path: '/' });
 
-		throw error(403, 'Det gick inte att verifiera din session. Logga in igen.');
+		throw redirect(302, '/');
 	}
 
 	if (expDate < new Date()) {
