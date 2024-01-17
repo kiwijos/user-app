@@ -74,7 +74,7 @@
 		};
 	});
 
-	data.bikes.forEach((bike: BikeFeature) => {
+	data.bikes.forEach((bike) => {
 		searchableFeatures.push({
 			name: `Cykel ${bike.properties.id}`,
 			alias: [bike.properties.city_id],
