@@ -142,6 +142,7 @@ export const load: PageServerLoad = async ({ url, fetch, cookies }) => {
 
 	try {
 		restServerResponse = await fetch(`${PUBLIC_REST_API_URL}/login/user`, {
+			cache: 'no-cache', // Don't cache the response, as it contains sensitive information
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
