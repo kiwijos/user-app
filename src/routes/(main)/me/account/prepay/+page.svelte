@@ -43,7 +43,7 @@
 		return async ({ result }) => {
 			if (!result?.data.success) return;
 
-			invalidate('server:fetch');
+			invalidate('server:balance');
 			await applyAction(result); // Apply the action, which will update the form state
 		};
 	};
