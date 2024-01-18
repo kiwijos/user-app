@@ -19,7 +19,6 @@
 		<button
 			class="btn grow text-lg {$page.url.pathname === path ? '!text-primary-500' : ''}"
 			aria-current={$page.url.pathname === path ? 'page' : null}
-			title="Gå till '{name}'"
 			on:click={() => goto(path)}
 			><span
 				class="rounded-full w-10 h-10 flex items-center justify-center bg-surface-100 dark:bg-surface-800"
