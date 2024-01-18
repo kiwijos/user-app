@@ -15,8 +15,8 @@
 
 	export let initialBottom: number | undefined;
 
-	let left: number = initialLeft ?? 0;
-	let top: number = initialBottom ? window.innerHeight - initialBottom : initialTop ?? 0;
+	let left: number;
+	let top: number;
 
 	/**
 	 * The z-index of the draggable
@@ -83,6 +83,8 @@
 	onMount(() => {
 		realSnapBottom = window.innerHeight - snapBottom;
 		realSnapMiddle = window.innerHeight - snapMiddle;
+		left = initialLeft ?? 0;
+		top = initialBottom ? window.innerHeight - initialBottom : initialTop ?? 0;
 	});
 
 	/**
