@@ -14,6 +14,7 @@
 	import VerticalTable from '$lib/components/VerticalTable.svelte';
 	import EndTripButton from '$lib/components/EndTripButton.svelte';
 	import type { TripCompleted } from '$lib/types/TripCompleted';
+	import { invalidate } from '$app/navigation';
 
 	let currentTab = 0;
 
@@ -118,6 +119,8 @@
 	};
 
 	const updateTrip = (e: CustomEvent<TripCompleted>) => {
+		invalidate('server:balance');
+
 		const trip = e.detail;
 		const index = formattedTrips.findIndex((t) => t.id === trip.id);
 
