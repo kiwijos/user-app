@@ -51,6 +51,19 @@ The app interfaces with a REST API connected to a backend server and database.
 3. The server URL is no secret and is provided in the `.env.example` file.
 4. Server code can be found at [JuliaLind/vteam-server](https://github.com/JuliaLind/vteam-server).
 
+### GitHub OAuth App Setup
+
+To test the app locally, you need to create your own GitHub OAuth App for authentication (unless you remove the auth check or come up with another solution):
+
+1. Go to your GitHub account settings, navigate to 'Developer settings' > 'OAuth Apps' and click 'New OAuth App'.
+2. In the 'Application name' field, enter a name for your app.
+3. Set the 'Homepage URL' to `http://localhost:5173`.
+4. For 'Authorization callback URL', enter `http://localhost:5173/callback`.
+5. Once created, note down the 'Client ID' and 'Client Secret'.
+6. Add these credentials to your `.env` file as `PUBLIC_GITHUB_ID` and `GITHUB_SECRET`.
+
+For a more detailed guide on setting up the GitHub OAuth App, check out [this tutorial](https://github.com/kiwijos/vteam-github-oauth-study) by yours truly.
+
 ### Local Development
 
 Once you've created a project and installed the dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
